@@ -1,0 +1,77 @@
+git init<!DOCTYPE html>
+<html>
+<head>
+  <title>User Information Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Enter Your Information</h2>
+
+<form action="#" method="post" id="userInfoForm">
+  <div class="form-group">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" placeholder="Your Name" required><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="mobile">Mobile Number:</label><br>
+    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email Address:</label><br>
+    <input type="email" id="email" name="email" placeholder="Email Address" required><br><br>
+  </div>
+
+  <input type="submit" value="Submit">
+</form>
+
+<div id="qrcode"></div>
+<button id="upiButton">Pay with UPI</button>
+
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('userInfoForm');
+    const qrCodeDiv = document.getElementById('qrcode');
+    
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the default form submission
+      
+      const upiId = 'rajivtyagi1975@ybl'; // Replace this with your static UPI ID
+      const amount = '10.00'; // Replace this with the payment amount
+      const transactionNote = 'Payment'; // Replace this with the transaction note
+      
+      // Clear any existing QR code
+      qrCodeDiv.innerHTML = '';
+      
+      // Generate the UPI payment URL
+      const upiPaymentUrl = `upi://pay?pa=${upiId}&pn=RecipientName&am=${amount}&cu=INR&tn=${transactionNote}`;
+      
+      // Create an image element with the payment QR code URL
+      const qrImage = document.createElement('img');
+      qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(upiPaymentUrl)}&size=300x300`;
+      qrCodeDiv.appendChild(qrImage);
+    });
+  });
+</script> -->
+
+<script>
+  const upiButton = document.getElementById("upiButton");
+
+upiButton.addEventListener("click", handleUPIClick);
+
+function handleUPIClick() {
+  const upiDeepLink = "upi://pay?pa=rajivtyagi1975@ybl"; // Replace with your UPI ID
+
+  try {
+    window.location.href = upiDeepLink;
+  } catch (error) {
+    console.error("Error opening UPI app:", error);
+    alert("No UPI app installed. Please install one to proceed.");
+  }
+}
+
+</script>
+</body>
+</html>
