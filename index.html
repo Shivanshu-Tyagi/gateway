@@ -8,7 +8,7 @@ git init<!DOCTYPE html>
 
 <h2>Enter Your Information</h2>
 
-<form action="#" method="post" id="userInfoForm">
+<!-- <form action="#" method="post" id="userInfoForm">
   <div class="form-group">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name" placeholder="Your Name" required><br><br>
@@ -25,27 +25,45 @@ git init<!DOCTYPE html>
   </div>
 
   <input type="submit" value="Submit">
-</form>
+</form> -->
 
 <div id="qrcode"></div>
 <button id="upiButton">Pay with UPI</button>
+<button id="generateQRButton">Pay with QR Code</button>
 
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 <script>
   const upiButton = document.getElementById("upiButton");
+  const generateQRButton = document.getElementById("generateQRButton");
 
-upiButton.addEventListener("click", handleUPIClick);
+  upiButton.addEventListener("click", handleUPIClick);
+  generateQRButton.addEventListener("click", generateQRCode);
 
-function handleUPIClick() {
-  const upiDeepLink = "upi://pay?pa=rajivtyagi1975@ybl"; // Replace with your UPI ID
+  function handleUPIClick() {
+    const upiId = 'rajivtyagi1975@ybl'; // Replace with your UPI ID
+    const amount = '10.00'; // Replace with the payment amount
+    const transactionNote = 'Payment'; // Replace with the transaction note
 
-  try {
-    window.location.href = upiDeepLink;
-  } catch (error) {
-    console.error("Error opening UPI app:", error);
-    alert("No UPI app installed. Please install one to proceed.");
+    const upiPaymentUrl = `upi://pay?pa=${upiId}&pn=RecipientName&am=${amount}&cu=INR&tn=${transactionNote}`;
+
+    try {
+      window.location.href = upiPaymentUrl;
+    } catch (error) {
+      console.error("Error opening UPI app:", error);
+      alert("No UPI app installed. Please install one to proceed.");
+    }
   }
-}
 
+  function generateQRCode() {
+    const upiId = 'rajivtyagi1975@ybl'; // Replace with your UPI ID
+    const amount = '10.00'; // Replace with the payment amount
+    const transactionNote = 'Payment'; // Replace with the transaction note
+
+    const upiPaymentUrl = `upi://pay?pa=${upiId}&pn=RecipientName&am=${amount}&cu=INR&tn=${transactionNote}`;
+
+    // Generate QR code
+    new QRCode(document.getElementById("qrcode"), upiPaymentUrl);
+  }
 </script>
 </body>
 </html>
