@@ -1,4 +1,4 @@
-<!-- git init<!DOCTYPE html>
+git init<!DOCTYPE html>
 <html>
 <head>
   <title>User Information Form</title>
@@ -47,63 +47,5 @@ function handleUPIClick() {
 }
 
 </script>
-</body>
-</html> -->
-
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>User Information Form</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<h2>Enter Your Information</h2>
-
-<form action="#" method="post" id="userInfoForm">
-  <div class="form-group">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" placeholder="Your Name" required><br><br>
-  </div>
-
-  <div class="form-group">
-    <label for="mobile">Mobile Number:</label><br>
-    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required><br><br>
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email Address:</label><br>
-    <input type="email" id="email" name="email" placeholder="Email Address" required><br><br>
-  </div>
-
-  <input type="submit" value="Submit">
-</form>
-
-<div id="qrcode"></div>
-<p>Scan the QR code with your UPI app to complete the payment.</p>
-
-<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('userInfoForm');
-    const qrCodeDiv = document.getElementById('qrcode');
-    
-    form.addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent the default form submission
-      
-      const upiId = 'rajivtyagi1975@ybl'; // Replace this with your static UPI ID
-      const amount = '10.00'; // Replace this with the payment amount
-      const transactionNote = 'Payment'; // Replace this with the transaction note
-      
-      // Generate the UPI payment URL
-      const upiPaymentUrl = `upi://pay?pa=${upiId}&pn=RecipientName&am=${amount}&cu=INR&tn=${transactionNote}`;
-      
-      // Generate QR code
-      new QRCode(qrCodeDiv, upiPaymentUrl);
-    });
-  });
-</script>
-
 </body>
 </html>
